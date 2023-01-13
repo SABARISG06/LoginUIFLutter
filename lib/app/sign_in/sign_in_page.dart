@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:mobileappprojects/custombuttonwid/socialsignin.dart';
 
-import '../../custombuttonwid/elevatedbu.dart';
+import '../../custombuttonwid/sign_in_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
+
+  void _signinAnonymously() async {
+    final authResult = await FirebaseAuth.instance.signInAnonymously();
+    // ignore: avoid_print
+    print(authResult.user!.uid);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,49 +46,40 @@ class SignInPage extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 20.0),
+          const SizedBox(height: 50.0),
           //Creating the our own custom widget button.
-          CustomElevatedButton(
+          SocialSignInButton(
+            imageName: 'images/google-logo.png',
+            text: 'Sign-in with Google',
             bgcolor: Colors.white,
-            borderRadius: 15.0,
-            padding: 15.0,
+            borderRadius: 5.0,
             onPressed: () {},
             fgcolor: Colors.black,
-            child: const Text(
-              'Sign-in with Google',
-              style: TextStyle(
-                fontSize: 18.0,
-              ),
-            ),
+            fontsize: 18.0,
+            height: 50.0,
           ),
           const SizedBox(height: 8.0),
           //Creating the our own custom widget button.
-          CustomElevatedButton(
+          SocialSignInButton(
+            imageName: 'images/facebook-logo.png',
+            text: 'Sign-in with FaceBook',
+            fontsize: 18.0,
+            height: 50.0,
             bgcolor: const Color(0xFF334D92),
-            borderRadius: 15.0,
-            padding: 15.0,
+            borderRadius: 5.0,
             onPressed: () {},
             fgcolor: Colors.white,
-            child: const Text(
-              'Sign-in with FaceBook',
-              style: TextStyle(
-                fontSize: 18.0,
-              ),
-            ),
           ),
           const SizedBox(height: 8.0),
-          CustomElevatedButton(
+          SignInButton(
+            // imageName: 'images/logo-gmail-9952.png',
+            text: 'Sign-in with Email',
+            fontsize: 18.0,
+            height: 50.0,
             bgcolor: Colors.teal,
-            borderRadius: 15.0,
-            padding: 15.0,
+            borderRadius: 5.0,
             onPressed: () {},
             fgcolor: Colors.white,
-            child: const Text(
-              'Sign-in with Email',
-              style: TextStyle(
-                fontSize: 18.0,
-              ),
-            ),
           ),
           const SizedBox(height: 8.0),
           const Text(
@@ -89,18 +88,16 @@ class SignInPage extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8.0),
-          CustomElevatedButton(
-            bgcolor: Colors.yellow.shade500,
-            borderRadius: 15.0,
-            padding: 15.0,
-            onPressed: () {},
-            fgcolor: Colors.red,
-            child: const Text(
-              'Sign-in with anonyms',
-              style: TextStyle(
-                fontSize: 18.0,
-              ),
-            ),
+          SocialSignInButton(
+            imageName: 'images/crowd-27575.png',
+            text: 'Go anonymous',
+            fontsize: 18.0,
+            height: 50.0,
+            bgcolor: Colors.yellow[900],
+            borderRadius: 5.0,
+            // padding: 15.0,
+            onPressed: _signinAnonymously,
+            fgcolor: Colors.white,
           ),
         ],
       ),
