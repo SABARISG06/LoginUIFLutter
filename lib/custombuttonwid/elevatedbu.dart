@@ -7,31 +7,35 @@ class CustomElevatedButton extends StatelessWidget {
     required this.bgcolor,
     required this.borderRadius,
     required this.onPressed,
-    required this.padding,
+    //  this.padding,
     required this.fgcolor,
+    required this.height,
   }) : super(key: key);
 
-  final Widget child;
-  final Color bgcolor;
+  final Widget? child;
+  final Color? bgcolor;
   final double borderRadius;
-  final VoidCallback onPressed;
-  final double padding;
-  final Color fgcolor;
-  // final Colors colors;
+  final VoidCallback? onPressed;
+  // final double? padding;
+  final Color? fgcolor;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: bgcolor,
-        foregroundColor: fgcolor,
-        padding: EdgeInsets.all(padding),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
+    return SizedBox(
+      height: height,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: bgcolor,
+          foregroundColor: fgcolor,
+          // padding: EdgeInsets.all(padding),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+          ),
         ),
+        onPressed: onPressed,
+        child: child,
       ),
-      onPressed: onPressed,
-      child: child,
     );
   }
 }
